@@ -10,7 +10,7 @@ galleryContainer.addEventListener('click', onGalleryMarkup);
 
 function onCreateGallery(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
-        return `<div class= "gallery__item">
+        return `<div class="gallery__item">
         <a class="gallery__link" href= "${original}">
         <img class="gallery__image"
         src="${preview}"
@@ -20,16 +20,7 @@ function onCreateGallery(galleryItems) {
         </div>`;
     }).join('');
 }
-function onGalleryMarkup(event){
-    event.preventDefault;
 
-    if (event.target.nodeName !== 'IMG') {
-        return;
-    }
-
-    instance.element().querySelector('.gallery__modal__img').src = event.target.dataset.src;
-    instance.show();
-}
 const instance = basicLightbox.create(`
     <img class="gallery__modal__img" src=''>
 `,
@@ -37,17 +28,25 @@ const instance = basicLightbox.create(`
         onShow: instance => {
             window.addEventListener('keydown', onEscapeClick);
         },
-    },
-        {
         onClose: instance => {
             window.removeEventListener('keydown', onEscapeClick);
         },
     },
 );
 
+function onGalleryMarkup(event){
+    event.preventDefault();
+
+    if (event.target.nodeName !== 'IMG') {
+        return;
+    }
+
+    instance.element().querySelector('.gallery__modal__img').src = event.target.src;
+    instance.show();
+}
+
 function onEscapeClick(event){
     if (event.key === 'Escape') {
         instance.close();
-        return;
 }
 }
