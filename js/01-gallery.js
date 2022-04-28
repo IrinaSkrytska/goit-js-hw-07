@@ -12,9 +12,10 @@ function onCreateGallery(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
         return `<div class="gallery__item">
         <a class="gallery__link" href= "${original}">
-        <img loading="lazy" class="gallery__image lazyload"
+        <img loading="lazy"
+      class="gallery__image lazyload" 
         src="${preview}"
-         data-source="${original}" 
+         data-src="${original}" 
          alt="${description}"/>
           </a>
         </div>`;
