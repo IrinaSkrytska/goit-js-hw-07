@@ -12,7 +12,7 @@ function onCreateGallery(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
         return `<div class="gallery__item">
         <a class="gallery__link" href= "${original}">
-        <img class="gallery__image"
+        <img loading="lazy" class="gallery__image lazyload"
         src="${preview}"
          data-source="${original}" 
          alt="${description}"/>
@@ -50,3 +50,29 @@ function onEscapeClick(event){
         instance.close();
 }
 }
+
+if ('loading' in HTMLImageElement.prototype) { 
+    addLazyImages();
+   
+}
+else {
+   createLazyImages();
+}
+
+function addLazyImages() {
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+lazyImages.forEach(image => {
+    image.src = image.dataset.src;
+});
+}
+
+function createLazyImages() {
+  const lazyScript = document.createElement('script');
+  script.src =
+    'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js';
+  script.integrity =
+    'sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==';
+    script.crossOrigin = 'anonymous';
+    document.body.appendChild(lazyScript);
+}
+
