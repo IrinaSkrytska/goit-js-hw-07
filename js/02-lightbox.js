@@ -18,9 +18,9 @@ function onCreateGallery(galleryItems) {
 }
 
 const gallery = new SimpleLightbox('.gallery a', {
-    CaptionData: 'alt',
-    CaptionPosition: 'bottom',
-    Captiondelay: '250ms',
-
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captiondelay: '250ms',
+    
 });
 console.log(galleryItems);
